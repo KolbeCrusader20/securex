@@ -1,0 +1,101 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01MWVE02FX4SQ4BVpUt3icYXPicDAFX651h",
+    "name": "Duo User Attestation",
+    "title": "Duo User Attestation",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": null,
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "Duo User Attestation",
+      "runtime_user": {
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "target_id": "definition_target_01MWU0L2VOSDM15HZeCEcPGOwL7vw2ysPm4",
+        "execute_on_workflow_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01MWW8DMO8S660hbbOua3iAOWxlrhkkNbeZ",
+        "name": "Duo - User Attestation",
+        "title": "Duo - User Attestation",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Duo - User Attestation",
+          "input": {
+            "variable_workflow_01ESCS7VLJJ2F3mBTY4jy6yHQUiovBfhAPC": "auto",
+            "variable_workflow_01ESCS7VLJL7Q1dtGR8XDcQMt8hWC2ZxWKM": "push",
+            "variable_workflow_01ESCS7VLJN5K2pY08ucafAiI0n61VMuxdN": "api-7257d2b7.duosecurity.com",
+            "variable_workflow_01ESCS7VLJPQ179erCj6NwREy1Rnen5aKSj": "",
+            "variable_workflow_01ESCS7VLJRQX04IZQw4qQowKLsRx8e2ZvZ": "jimmy",
+            "variable_workflow_01ESCS7VLJZAC1iWJMm63VN33kgUcyVjy1j": "$global.variable_01MWVITFLMR2F7jHKaQEjGuDGdyiAB1q4iZ.global.variable_01MWVITFLMR2F7jHKaQEjGuDGdyiAB1q4iZ$",
+            "variable_workflow_01ESCS7VLKUMM16Eac3lXYQttRwt2kGYbLJ": "",
+            "variable_workflow_01ESCS7VLKYFA2TF4idQFDyVoEVpZGjH0dG": "",
+            "variable_workflow_01FGXTEPN90KS27zXyWA0x5p5t0JrxJjEwN": "Request=Please%20confirm%20or%20deny%20whether%20you%20have%20tried%20to%20login%20to%20your%20device%20unsuccessfully%20multiple%20times%20in%20the%20last%20hour",
+            "variable_workflow_01FGXU5ZSVSIA5It8yfUWTqoXktCRuGu5f5": "End User",
+            "variable_workflow_01FHM0IU63GNA0MCDwiQ4pi9gOmoeLISQhk": "DIU7CVOGSOCPAC9D0H47"
+          },
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "target_type": "web-service.endpoint",
+            "use_workflow_target": true
+          },
+          "workflow_id": "definition_workflow_01ESCS7VXWNQD0GNdUTBy8TlG5UOqqzesqw"
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "targets": {
+    "definition_target_01MWU0L2VOSDM15HZeCEcPGOwL7vw2ysPm4": {
+      "unique_name": "definition_target_01MWU0L2VOSDM15HZeCEcPGOwL7vw2ysPm4",
+      "name": "Mazlab Duo",
+      "title": "Mazlab Duo",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "disable_certificate_validation": false,
+        "display_name": "Mazlab Duo",
+        "host": "api-7257d2b7.duosecurity.com",
+        "ignore_proxy": false,
+        "no_runtime_user": true,
+        "port": 443,
+        "protocol": "https"
+      }
+    }
+  },
+  "variables": {
+    "variable_01MWVITFLMR2F7jHKaQEjGuDGdyiAB1q4iZ": {
+      "unique_name": "variable_01MWVITFLMR2F7jHKaQEjGuDGdyiAB1q4iZ",
+      "properties": {
+        "value": "*****",
+        "scope": "global",
+        "name": "Duo API Skey",
+        "type": "datatype.secure_string",
+        "is_required": false,
+        "is_invisible": false
+      },
+      "object_type": "variable"
+    }
+  },
+  "atomic_workflows": [
+    "definition_workflow_01ESCS7VXWNQD0GNdUTBy8TlG5UOqqzesqw"
+  ]
+}
