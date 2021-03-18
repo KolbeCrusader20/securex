@@ -5,7 +5,47 @@
     "title": "Duo User Attestation",
     "type": "generic.workflow",
     "base_type": "workflow",
-    "variables": null,
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "LocalAuthBruteForceCheck",
+          "scope": "local",
+          "name": "OrbitalJobName",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01N3NXVYSZAMW5C7E7VWpsyQfoVbAIwuaN1",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "DESKTOP-1PNJTAT",
+          "scope": "local",
+          "name": "Hostname",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01N3O50C9D5YL3HLEnMiXXxbkwaTvwtmr5P",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "s3BUtyfkiCtUsruxggIqEg",
+          "scope": "local",
+          "name": "CatalogQueryID",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01N3O8YLQNBZ81VXTx1iYoxKCHiS0eeGJ9v",
+        "object_type": "variable_workflow"
+      }
+    ],
     "properties": {
       "atomic": {
         "is_atomic": false
@@ -16,13 +56,68 @@
         "target_default": true
       },
       "target": {
-        "target_type": "web-service.endpoint",
-        "target_id": "definition_target_01MWU0L2VOSDM15HZeCEcPGOwL7vw2ysPm4",
-        "execute_on_workflow_target": true
+        "no_target": true
       }
     },
     "object_type": "definition_workflow",
     "actions": [
+      {
+        "unique_name": "definition_activity_01N3HVJ8FU54A3XawRijN6lM8JryvBfMptC",
+        "name": "Orbital Access Token",
+        "title": "Orbital Access Token",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Orbital Access Token",
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_01N3HE8MXENGO5gtcSPx9KW3P8RzdtqM8N4",
+            "target_type": "web-service.endpoint"
+          },
+          "workflow_id": "definition_workflow_01779LB6MV0P02kvka9TGV5cEam84NrCTy4"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01N2SULYUU9IJ4gBJDrSKF3WX5EsaRUupIN",
+        "name": "Orbital - Query Endpoint",
+        "title": "Orbital - Query Endpoint",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Orbital - Query Endpoint",
+          "input": {
+            "variable_workflow_01F4YGKGSPQ4R0cp29F0OqpDcXkjpph7LCH": "$workflow.definition_workflow_01MWVE02FX4SQ4BVpUt3icYXPicDAFX651h.local.variable_workflow_01N3O50C9D5YL3HLEnMiXXxbkwaTvwtmr5P$",
+            "variable_workflow_01F4YGKGSPVOT0mTZ6DAQYFbZROdb9xnhdU": "$activity.definition_activity_01N3HVJ8FU54A3XawRijN6lM8JryvBfMptC.output.variable_workflow_01BNOOXA3G6MV1PGAvsfZOKDdMYcE6XS726$",
+            "variable_workflow_01F4YGKGSPWTB4YpUnQ0yxhqhW0mK5GRc8M": "",
+            "variable_workflow_01F4YGKGSPZ6U1aJjRQVdPZLfGTDaKUp6aj": "",
+            "variable_workflow_01F4YGKGSQ0CV4Aoqb5dI0cE4BnX2d363Q6": "",
+            "variable_workflow_01F4YGKGSQ1G12UKXH09WJ1SniEvSl5Mvix": "",
+            "variable_workflow_01F5OLF57L9ZO3EqIUyCbALqlT8zl1g2Ewx": true,
+            "variable_workflow_01F5OPGZKY45B6qt4GZaTWFCQgeubkvxetW": "$workflow.definition_workflow_01MWVE02FX4SQ4BVpUt3icYXPicDAFX651h.local.variable_workflow_01N3O8YLQNBZ81VXTx1iYoxKCHiS0eeGJ9v$",
+            "variable_workflow_01F5OQ33Z1FYY6EU9WApPObYDLrXazVhrX6": 2,
+            "variable_workflow_01F6IYTZNLX4G5pSwr6DIkCQrikF0bhHcja": "",
+            "variable_workflow_01FBQGUI51HH37Ch8QLjCXWxN0bdvHzSslk": "$workflow.definition_workflow_01MWVE02FX4SQ4BVpUt3icYXPicDAFX651h.local.variable_workflow_01N3NXVYSZAMW5C7E7VWpsyQfoVbAIwuaN1$"
+          },
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_01N3HE8MXENGO5gtcSPx9KW3P8RzdtqM8N4",
+            "target_type": "web-service.endpoint"
+          },
+          "workflow_id": "definition_workflow_01F4YGKHBBM2L2SwIZBJ2sKamNjm3QtxeAQ"
+        },
+        "object_type": "definition_activity"
+      },
       {
         "unique_name": "definition_activity_01MWW8DMO8S660hbbOua3iAOWxlrhkkNbeZ",
         "name": "Duo - User Attestation",
@@ -50,8 +145,9 @@
           },
           "skip_execution": false,
           "target": {
-            "target_type": "web-service.endpoint",
-            "use_workflow_target": true
+            "override_workflow_target": true,
+            "target_id": "definition_target_01MWU0L2VOSDM15HZeCEcPGOwL7vw2ysPm4",
+            "target_type": "web-service.endpoint"
           },
           "workflow_id": "definition_workflow_01ESCS7VXWNQD0GNdUTBy8TlG5UOqqzesqw"
         },
@@ -79,6 +175,39 @@
         "port": 443,
         "protocol": "https"
       }
+    },
+    "definition_target_01N3HE8MXENGO5gtcSPx9KW3P8RzdtqM8N4": {
+      "unique_name": "definition_target_01N3HE8MXENGO5gtcSPx9KW3P8RzdtqM8N4",
+      "name": "Orbital",
+      "title": "Orbital",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "default_runtime_user_id": "definition_runtime_user_01N3HDGBWZWP84NQBWyNubkIVvFMFS6O0TJ",
+        "disable_certificate_validation": false,
+        "display_name": "Orbital",
+        "host": "orbital.eu.amp.cisco.com",
+        "ignore_proxy": false,
+        "no_runtime_user": false,
+        "protocol": "https"
+      }
+    }
+  },
+  "runtime_users": {
+    "definition_runtime_user_01N3HDGBWZWP84NQBWyNubkIVvFMFS6O0TJ": {
+      "unique_name": "definition_runtime_user_01N3HDGBWZWP84NQBWyNubkIVvFMFS6O0TJ",
+      "name": "OrbitalAuth",
+      "title": "OrbitalAuth",
+      "type": "runtime_user.web-service_basic_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "auth_option": "*****",
+        "basic_password": "*****",
+        "basic_username": "*****",
+        "display_name": "OrbitalAuth"
+      }
     }
   },
   "variables": {
@@ -96,6 +225,8 @@
     }
   },
   "atomic_workflows": [
+    "definition_workflow_01F4YGKHBBM2L2SwIZBJ2sKamNjm3QtxeAQ",
+    "definition_workflow_01779LB6MV0P02kvka9TGV5cEam84NrCTy4",
     "definition_workflow_01ESCS7VXWNQD0GNdUTBy8TlG5UOqqzesqw"
   ]
 }
